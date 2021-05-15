@@ -21,3 +21,13 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
     codeCoverageToolOption: jaCoCo
+    
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'sonarcloud'
+    scannerMode: 'Other'
+    extraProperties: 'sonar.projectKey=sv-devops'
+
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
