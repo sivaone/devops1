@@ -29,5 +29,7 @@ steps:
     extraProperties: |
       sonar.projectKey=sv-devops
       sonar.organization=sivaone
-  inputs:
-    pollingTimeoutSec: '300'
+      
+ - task: SonarQubePublish@4
+    inputs:
+      pollingTimeoutSec: '300'
