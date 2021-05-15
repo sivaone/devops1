@@ -26,8 +26,10 @@ steps:
   inputs:
     SonarQube: 'sonarcloud'
     scannerMode: 'Other'
-    extraProperties: 'sonar.projectKey=sv-devops'
-
+    extraProperties: |
+      sonar.projectKey=sv-devops
+      sonar.organization=sivaone
+      
 - task: SonarQubePublish@4
   inputs:
     pollingTimeoutSec: '300'
