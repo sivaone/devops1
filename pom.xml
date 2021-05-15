@@ -15,6 +15,9 @@
 	<description>Devops project using Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<sonar.projectKey>sv-devops</sonar.projectKey>
+  		<sonar.organization>sivaone</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
