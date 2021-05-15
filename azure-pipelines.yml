@@ -22,14 +22,13 @@ steps:
     goals: 'package'
     codeCoverageToolOption: jaCoCo
     
-- task: SonarQubePrepare@4
+- task: SonarCloudPrepare@1
   inputs:
-    SonarQube: 'sonarcloud'
+    SonarCloud: 'SonarCloud'
+    organization: 'sivaone'
     scannerMode: 'Other'
-    extraProperties: |
-      sonar.projectKey=sv-devops
-      sonar.organization=sivaone
-      
-- task: SonarQubePublish@4
+    extraProperties: 'sonar.projectKey=sv-devops'
+
+- task: SonarCloudPublish@1
   inputs:
     pollingTimeoutSec: '300'
