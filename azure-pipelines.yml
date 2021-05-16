@@ -55,3 +55,18 @@ steps:
     retryCount: '3'
     socketTimeout: '500'
 
+- task: Maven@3
+  displayName: Build Docker image
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'spring-boot:build-image'
+    publishJUnitResults: false
+    jdkVersionOption: '1.11'
+
+- task: ArtifactoryDocker@1
+  inputs:
+    command: 'push'
+    artifactoryService: 'JFrog sivaone'
+    targetRepo: 'default-docker-local'
+    imageName: 'devops1:0.0.1-SNAPSHOT'
+    
