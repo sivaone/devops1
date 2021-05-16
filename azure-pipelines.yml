@@ -54,14 +54,4 @@ steps:
     secureFile: 'settings.xml'
     retryCount: '3'
     socketTimeout: '500'
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    goals: 'deploy'
-    options: '-B -s $(mvnSettings.secureFilePath) -DFEED_ACCESS_TOKEN=${feedAccessToken}'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.11'
-    mavenVersionOption: 'Default'
-    mavenAuthenticateFeed: true
+
