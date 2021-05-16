@@ -86,5 +86,5 @@ steps:
     command: 'push'
     artifactoryService: 'JFrog sivaone'
     targetRepo: 'default-docker-local'
-    imageName: 'devops1:0.0.1-SNAPSHOT'
+    imageName: 'sivaone.jfrog.io/default-docker-local/devops1:0.0.1-SNAPSHOT'
     
