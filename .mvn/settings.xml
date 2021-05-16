@@ -5,8 +5,8 @@
     <servers>
         <server>
             <id>sivaone_feed</id>
-            <username>${FEED_USERNAME}</username>
-            <password>${FEED_ACCESS_TOKEN}</password>
+            <username>${feedUsername}</username>
+            <password>${feedAccessToken}</password>
         </server>
     </servers>
 </settings>
