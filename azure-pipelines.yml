@@ -96,3 +96,4 @@ steps:
     WebAppName: 'sv-devops1'
     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar'
     RuntimeStack: 'JAVA|11-java11'
+    StartupCommand: 'java -jar -Dserver.port=80 /home/site/wwwroot/devops1-0.0.1-SNAPSHOT.jar'
