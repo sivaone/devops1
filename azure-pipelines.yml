@@ -47,3 +47,15 @@ steps:
   inputs:
     cwd: '$(System.DefaultWorkingDirectory)'
     projectName: 'sv-devops'
+    
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'deploy'
+    options: '-B -s $(mvnSettings.secureFilePath) -DFEED_ACCESS_TOKEN=${feedAccessToken} deploy'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: true
