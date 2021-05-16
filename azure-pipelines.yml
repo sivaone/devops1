@@ -11,6 +11,7 @@ pool:
 
 steps:
 - task: Maven@3
+  displayName: Build Code
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'package'
@@ -29,6 +30,7 @@ steps:
     scannerMode: 'Other'
     extraProperties: 'sonar.projectKey=sv-devops'
 - task: Maven@3
+  displayName: Run Sonar scan
   inputs:
     mavenPomFile: 'pom.xml'
     goals: 'clean verify sonar:sonar'
@@ -44,16 +46,31 @@ steps:
     pollingTimeoutSec: '300'
 
 - task: WhiteSource@21
+  displayName: WhiteSource SCA
   inputs:
     cwd: '$(System.DefaultWorkingDirectory)'
     projectName: 'sv-devops'
 
 - task: DownloadSecureFile@1
+  displayName: Get maven settings
   name: mvnSettings
   inputs:
     secureFile: 'settings.xml'
     retryCount: '3'
     socketTimeout: '500'
+
+- task: Maven@3
+  displayName: Publish maven Artifact
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'deploy'
+    options: '-B -s $(mvnSettings.secureFilePath) -DfeedAccessToken=${feedAccessToken}'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: true
 
 - task: Maven@3
   displayName: Build Docker image
@@ -64,6 +81,7 @@ steps:
     jdkVersionOption: '1.11'
 
 - task: ArtifactoryDocker@1
+  displayName: Push Docker iamge
   inputs:
     command: 'push'
     artifactoryService: 'JFrog sivaone'
