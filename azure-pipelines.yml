@@ -65,8 +65,6 @@ steps:
     mavenPomFile: 'pom.xml'
     goals: 'deploy'
     options: '-B -s $(mvnSettings.secureFilePath) -DfeedAccessToken=${feedAccessToken}'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.11'
     mavenVersionOption: 'Default'
@@ -88,12 +86,12 @@ steps:
     targetRepo: 'default-docker-local'
     imageName: 'sivaone.jfrog.io/default-docker-local/devops1:0.0.1-SNAPSHOT'
     
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'azure-webapp-devops1'
-    appType: 'webAppLinux'
-    WebAppName: 'sv-devops1'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar'
-    RuntimeStack: 'JAVA|11-java11'
-    StartupCommand: 'java -jar -Dserver.port=80 /home/site/wwwroot/devops1-0.0.1-SNAPSHOT.jar'
+# - task: AzureRmWebAppDeployment@4
+#   inputs:
+#     ConnectionType: 'AzureRM'
+#     azureSubscription: 'azure-webapp-devops1'
+#     appType: 'webAppLinux'
+#     WebAppName: 'sv-devops1'
+#     packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.jar'
+#     RuntimeStack: 'JAVA|11-java11'
+#     StartupCommand: 'java -jar -Dserver.port=80 /home/site/wwwroot/devops1-0.0.1-SNAPSHOT.jar'
